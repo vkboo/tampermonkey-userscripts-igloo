@@ -3,7 +3,7 @@
 // @namespace https://github.com/vkboo/tampermonkey-userscripts-igloo
 // @version  1.0
 // @description A sample userscript built using react
-// @include https://*.google.com*
+// @include http://localhost:8000/
 // @grant    none
 // ==/UserScript==
 
@@ -7007,7 +7007,8 @@
   }
   log("React script has successfully started");
   async function main() {
-    const body = await awaitElement("body > div");
+    await awaitElement("body > div");
+    const body = document.body;
     const container = document.createElement("div");
     body.appendChild(container);
     const root = createRoot(container);

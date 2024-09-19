@@ -3,7 +3,7 @@
 // @namespace https://github.com/vkboo/tampermonkey-userscripts-igloo
 // @version  1.0
 // @description A sample userscript built using react
-// @include https://*.google.com*
+// @include http://localhost:8000/
 // @grant    none
 // ==/UserScript==
 

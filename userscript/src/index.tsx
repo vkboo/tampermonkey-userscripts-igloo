@@ -12,7 +12,9 @@ log("React script has successfully started");
 async function main() {
     // Find <body/>. This can be any element. We wait until
     // the page has loaded enough for that element to exist.
-    const body = await awaitElement("body > div");
+    await awaitElement("body > div");
+    // for SPA host page, body > div may be overwrite by SPA render engine, so use document.body to appendChild
+    const body = document.body;
     const container = document.createElement("div");
     body.appendChild(container);
     const root = createRoot(container);
