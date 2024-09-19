@@ -1,3 +1,4 @@
+<!-- TODO: 修改部分Readme -->
 # react-userscripts
 Develop a Greasemonkey/Tampermonkey script using React
 
@@ -52,3 +53,8 @@ When executing the script made for dev mode, React will crash when a `useEffect`
 However, [ViolentMonkey](https://github.com/violentmonkey/violentmonkey) has a bug and does not correctly handle `window` and `unsafeWindow` and React tries to read from these variables and crashes.
 
 The solution is to update to any version > 2.13.0 - (The latest beta versions have fixed the issue)
+
+## TODO
+1. dashboard /platforms 页面的搜索
+2. sso页面的快捷Google登陆
+3. 先实现最简单的UI，还原需求，后面再找UI库增强设计
