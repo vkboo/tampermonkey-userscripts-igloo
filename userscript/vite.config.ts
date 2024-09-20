@@ -1,10 +1,20 @@
 import { PluginOption, defineConfig } from "vite";
 import fs from "node:fs";
+import autoprefixer from "autoprefixer";
+import tailwindcss from "tailwindcss";
+import tailwindConfig from "./tailwind.config";
 
 export default defineConfig(({ mode }) => {
-    console.log("Building in", mode);
     return {
         plugins: [bundlePlugin],
+        css: {
+            postcss: {
+                plugins: [
+                    autoprefixer(),
+                    tailwindcss(tailwindConfig),
+                ]
+            },
+        },
         base: "./",
         root: "../",
         build: {
