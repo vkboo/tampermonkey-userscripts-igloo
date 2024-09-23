@@ -1,12 +1,22 @@
 import { PluginOption, defineConfig } from "vite";
 import fs from "node:fs";
+import { fileURLToPath } from 'node:url';
+import path, { dirname } from 'node:path';
 import autoprefixer from "autoprefixer";
 import tailwindcss from "tailwindcss";
 import tailwindConfig from "./tailwind.config";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export default defineConfig(({ mode }) => {
     return {
         plugins: [bundlePlugin],
+        resolve: {
+            alias: {
+                "@": path.resolve(__dirname, "./src"),
+            },
+        },
         css: {
             postcss: {
                 plugins: [
