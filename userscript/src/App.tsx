@@ -1,10 +1,7 @@
-import React from "react";
-import "./App.css";
-import { Button } from "@/components/ui/button"
-
+import SearchBox from '@/components/search-box';
 function App() {
     return (
-        <Button>Click me</Button>
+        <SearchBox className='fixed right-0 top-0 z-50' />
     );
 }
 
