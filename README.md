@@ -58,3 +58,5 @@ The solution is to update to any version > 2.13.0 - (The latest beta versions ha
 1. dashboard /platforms 页面的搜索
     * 触发搜索时，产生全局的Apple Intelligence动画
 2. sso页面的快捷Google登陆
+3. 需要做成一个Chrome Extension
+4. 给searchBox的wrap做上这个动画 https://codepen.io/LukyVj/pen/YzOXepM

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { FC } from 'react';
-import { cn } from '@/lib/utils'
+import { cn, getOS } from '@/lib/utils'
 import { Input } from '@/components/ui/input';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 
@@ -9,14 +9,24 @@ type Props = {
     hotKey?: string;
 }
 
+const os = getOS();
+
 const SearchBox: FC<Props> = ({
     className,
 }) => {
     const [hotKey] = React.useState(() => {
-        return '⌘ K';
-    })
+        const osKey = os === 'Windows' ? 'Win' : (os === 'macOS' ? '⌘' : null);
+        return osKey ? `${osKey} K` : osKey;
+    });
 
     return (
+        /**
+         * TODO
+         * 1. 初始需要透明
+         * 2. focus/hover input的样式问题
+         * 3. 快捷键的使用
+         * 4. hostKey部分，在已经有搜索值的时候，改成"Esc"
+         */
         // opacity-65
         <div className={cn(
             'inline-flex items-center justify-center gap-1 w-72 bg-slate-800 hover:bg-slate-700 px-3 rounded-md',
