@@ -43,7 +43,8 @@ const SearchBox: FC<Props> = ({
             <span
                 data-focus-tip-key={hotKey}
                 data-blur-tip-key="Esc"
-                className="text-slate-500 text-sm after:content-[attr(data-focus-tip-key)] peer-focus:after:content-[attr(data-blur-tip-key)]" />
+                className="text-slate-500 text-sm after:content-[attr(data-focus-tip-key)] peer-focus:after:content-[attr(data-blur-tip-key)]"
+            />
 
         </div>
     );
