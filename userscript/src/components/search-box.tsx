@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { cn, getOS } from '@/lib/utils'
 import { Input } from '@/components/ui/input';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { useKeyPress } from 'ahooks';
 
 type Props = {
     className?: string;
@@ -14,32 +15,35 @@ const os = getOS();
 const SearchBox: FC<Props> = ({
     className,
 }) => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
     const [hotKey] = React.useState(() => {
         const osKey = os === 'Windows' ? 'Win' : (os === 'macOS' ? '⌘' : null);
         return osKey ? `${osKey} K` : osKey;
     });
 
+    useKeyPress(['meta.k'], () => {
+        inputRef.current?.focus();
+    });
+
+    useKeyPress(['Esc'], () => {
+        inputRef.current?.blur();
+    });
+
     return (
-        /**
-         * TODO
-         * 1. 初始需要透明 ✅
-         * 2. focus/hover input的样式问题 ✅
-         * 3. 快捷键的使用
-         * 4. hostKey部分，在已经有搜索值的时候，改成"Esc"
-         */
-        // opacity-65
         <div className={cn(
             'group inline-flex items-center justify-center gap-1 w-72 bg-slate-800 hover:bg-slate-700 px-3 rounded-md transition-all opacity-65 focus-within:opacity-100',
             className
         )}>
             <MagnifyingGlassIcon className="text-slate-400" width={24} height={24} />
             <Input
-                className="border-none px-0 rounded-none group-hover:bg-slate-700 flex-1"
+                ref={inputRef}
+                className="peer border-none px-0 rounded-none group-hover:bg-slate-700 flex-1"
                 placeholder='Quick search...'
             />
-            <span className="text-slate-500 text-sm">
-                {hotKey}
-            </span>
+            <span
+                data-focus-tip-key={hotKey}
+                data-blur-tip-key="Esc"
+                className="text-slate-500 text-sm after:content-[attr(data-focus-tip-key)] peer-focus:after:content-[attr(data-blur-tip-key)]" />
 
         </div>
     );
